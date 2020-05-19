@@ -1,4 +1,5 @@
 class ReportItem{
+
 	private String description;
 	private float amount;
 	
