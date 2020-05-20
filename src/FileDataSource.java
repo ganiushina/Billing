@@ -1,6 +1,8 @@
-import java.io.*;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.nio.file.Files;
-import java.util.List;
 
 import static java.nio.file.StandardOpenOption.CREATE_NEW;
 
@@ -15,12 +17,6 @@ public class FileDataSource {
 
     public void writeData() {
         File file = new File(name);
-//        try (OutputStream fos = new FileOutputStream(file)) {
-//            fos.write(data.getBytes(), 0, data.length());
-//        } catch (IOException ex) {
-//            System.out.println(ex.getMessage());
-//        }
-
         try (OutputStream outputStream = Files.newOutputStream(file.toPath(),
                 CREATE_NEW)) {
             outputStream.write(123);

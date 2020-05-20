@@ -13,15 +13,12 @@ class Programm{
 		FileDataSource fileDataSource = new FileDataSource(report.getItems().get(0).getDescription() + ".txt");
 		fileDataSource.writeData();
 
-//		FileDataSource fileDataSource = new FileDataSource("1.txt");
-//		fileDataSource.writeData();
-
 		BillingDecorator billingDecorator = new BillingDecorator(report, new ScreenReport());
 		billingDecorator.displayReport();
 		BillingDecorator billingDecorator1 = new BillingDecorator(report, new PrintReport());
 		billingDecorator1.displayReport();
 
-	//	fileDataSource.readData();
+		fileDataSource.readData();
 
 
 	}

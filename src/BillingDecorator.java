@@ -16,7 +16,6 @@ public class BillingDecorator implements ReportOutput {
         reportOutput.displayReport();
         List<ReportItem> reportItems = report.getItems();
         for(ReportItem item : reportItems){
-          //  System.out.format("display %s - %f \n\r", item.getDescription(), item.getAmount());
             System.out.println(item.getDescription() + " " + item.getAmount());
         }
     }
