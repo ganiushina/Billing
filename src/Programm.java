@@ -1,3 +1,4 @@
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,8 +11,13 @@ class Programm{
 
 		Report report = new Report(items);
 
-		FileDataSource fileDataSource = new FileDataSource(report.getItems().get(0).getDescription() + ".txt");
-		fileDataSource.writeData();
+		FileDataSource fileDataSource = null;
+		try {
+			fileDataSource = new FileDataSource(report.getItems().get(0).getDescription() + ".txt");
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+
 
 		BillingDecorator billingDecorator = new BillingDecorator(report, new ScreenReport());
 		billingDecorator.displayReport();

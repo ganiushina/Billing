@@ -1,7 +1,4 @@
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
 import java.nio.file.Files;
 
 import static java.nio.file.StandardOpenOption.CREATE_NEW;
@@ -9,23 +6,26 @@ import static java.nio.file.StandardOpenOption.CREATE_NEW;
 public class FileDataSource {
     private String name;
 
-    public FileDataSource(String name) {
+    public FileDataSource(String name) throws FileNotFoundException {
         this.name = name;
         writeData();
     }
 
 
-    public void writeData() {
-        File file = new File(name);
-        try (OutputStream outputStream = Files.newOutputStream(file.toPath(),
-                CREATE_NEW)) {
-            outputStream.write(123);
-            outputStream.flush();
-            System.out.println("done");
-        } catch (IOException e) {
-            e.printStackTrace();
+    public void writeData() throws FileNotFoundException {
+
+        FileOutputStream fos = new FileOutputStream(name);
+
+        try (DataOutputStream dos = new DataOutputStream(fos)) {
+            // записываем значения
+            dos.writeUTF("ghfggjhjkkhjkhjkhjgh");
+            dos.writeInt(30);
+            dos.writeDouble(20.58);
+            dos.writeBoolean(false);
+            System.out.println("Запись в файл выполнена");
+        } catch(IOException e){
+            System.out.println(e.getMessage());
         }
-        System.out.printf("%s exists: %s%n", file, file.exists());
     }
 
 
